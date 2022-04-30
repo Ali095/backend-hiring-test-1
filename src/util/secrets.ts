@@ -12,18 +12,24 @@ if (fs.existsSync(".env")) {
 export const ENVIRONMENT = process.env.NODE_ENV;
 const prod = ENVIRONMENT === "production"; // Anything else is treated as 'dev'
 
-export const SESSION_SECRET = process.env["SESSION_SECRET"];
 export const MONGODB_URI = prod ? process.env["MONGODB_URI"] : process.env["MONGODB_URI_LOCAL"];
-
-// export const  AWS_ACCESS_KEY_ID = process.env.AWS_ACCESS_KEY_ID;
 
 export const TWILIO_ACCOUNT_SID = process.env.TWILIO_ACCOUNT_SID;
 export const TWILIO_AUTH_TOKEN = process.env.TWILIO_AUTH_TOKEN;
 export const TWILIO_NUMBER = process.env.TWILIO_NUMBER;
-export const TWILIO_MESSAGING_SERVICE_SID = process.env.TWILIO_MESSAGING_SERVICE_SID;
 
-if (!SESSION_SECRET) {
-    logger.error("No client secret. Set SESSION_SECRET environment variable.");
+if (!TWILIO_ACCOUNT_SID) {
+    logger.error("No twilio setting. Set TWILIO_ACCOUNT_SID environment variable.");
+    process.exit(1);
+}
+
+if (!TWILIO_AUTH_TOKEN) {
+    logger.error("No twilio auth token. Set TWILIO_AUTH_TOKEN environment variable.");
+    process.exit(1);
+}
+
+if (!TWILIO_NUMBER) {
+    logger.error("No twilio number. Set TWILIO_NUMBER environment variable.");
     process.exit(1);
 }
 
