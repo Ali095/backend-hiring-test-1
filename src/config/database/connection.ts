@@ -3,6 +3,7 @@ import mongoose, { Mongoose } from "mongoose";
 import logger from "../../util/logger";
 
 export const DBConnect = async (mongoUrl: string) => {
+    console.log(mongoUrl);
     const connectionP = new Promise<Mongoose>((res, rej) => {
         mongoose.connect(mongoUrl, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true }).then(
             (ins) => { /** ready to use. The `mongoose.connect()` promise resolves to undefined. */

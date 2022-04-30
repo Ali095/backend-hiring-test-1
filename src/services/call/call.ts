@@ -12,9 +12,10 @@ import { callDAO } from "../../dao/call";
 class CallService {
     public async makeCall(targetNumber: string): Promise<string> {
         const callSID: string = await makeNewCall(targetNumber);
-        let callDetails: CallDTO;
-        callDetails.sid = callSID;
-        callDetails.type = "outgoing";
+        const callDetails: CallDTO = {
+            sid: callSID,
+            type: "outgoing",
+        };
         await callDAO.createNewCall(callDetails);
         return callSID;
     }
