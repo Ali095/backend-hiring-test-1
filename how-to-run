@@ -1,0 +1,8 @@
+clone the repository
+run following commands:
+  - npm install
+  - npm run build
+  - npm watch
+
+For running in production run with npm start.
+.env file is added for your reference.
